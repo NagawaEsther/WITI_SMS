@@ -1,0 +1,28 @@
+[
+    {
+        "name": "name",
+        "type": "text",
+        "dbType": "string",
+        "htmlAttributes": {
+            "placeholder": "Role Name"
+        }
+    },
+    {
+        "name": "guard_name",
+        "type": "text",
+        "dbType": "string",
+        "htmlAttributes": {
+            "placeholder": "Guard Name"
+        }
+    },
+    {
+        "name": "user_id",
+        "type": "select",
+        "relation": "belongsTo",
+        "model": "User",
+        "dbType": "unsignedBigInteger",
+        "htmlAttributes": {
+            "placeholder": "Select User"
+        }
+    }
+]
