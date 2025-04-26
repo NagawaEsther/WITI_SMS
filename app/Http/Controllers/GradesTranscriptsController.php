@@ -20,6 +20,14 @@ class GradesTranscriptsController extends Controller
             abort(403, 'No student record found for this user.');
         }
 
+        // Validate assessment_types
+        $request->validate([
+            'assessment_types' => 'nullable|array',
+            'assessment_types.*' => 'in:test1,test2,assignment,exam',
+            'semester_id' => 'nullable|exists:semesters,id',
+            'year_id' => 'nullable|exists:years,id',
+        ]);
+
         // Fetch student assessments
         $query = StudentAssessment::with(['program', 'courseUnit', 'semester', 'year'])
             ->where('student_id', $student->id);
@@ -52,6 +60,14 @@ class GradesTranscriptsController extends Controller
         if (!$student) {
             abort(403, 'No student record found for this user.');
         }
+
+        // Validate assessment_types
+        $request->validate([
+            'assessment_types' => 'nullable|array',
+            'assessment_types.*' => 'in:test1,test2,assignment,exam',
+            'semester_id' => 'nullable|exists:semesters,id',
+            'year_id' => 'nullable|exists:years,id',
+        ]);
 
         // Fetch student assessments
         $query = StudentAssessment::with(['program', 'courseUnit', 'semester', 'year'])

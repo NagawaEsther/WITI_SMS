@@ -13,7 +13,7 @@
                 <!-- Filters -->
                 <form method="GET" action="{{ route('student.grades-transcripts') }}" class="mb-4">
                     <div class="row g-3">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <select name="semester_id" class="form-select" style="border-color: #b8a373;">
                                 <option value="">All Semesters</option>
                                 @foreach (\App\Models\Semester::all() as $semester)
@@ -23,7 +23,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <select name="year_id" class="form-select" style="border-color: #b8a373;">
                                 <option value="">All Years</option>
                                 @foreach (\App\Models\Year::all() as $year)
@@ -33,7 +33,15 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <select name="assessment_types[]" class="form-select" multiple style="border-color: #b8a373;">
+                                <option value="test1" {{ in_array('test1', request('assessment_types', [])) ? 'selected' : '' }}>Test 1</option>
+                                <option value="test2" {{ in_array('test2', request('assessment_types', [])) ? 'selected' : '' }}>Test 2</option>
+                                <option value="assignment" {{ in_array('assignment', request('assessment_types', [])) ? 'selected' : '' }}>Assignment</option>
+                                <option value="exam" {{ in_array('exam', request('assessment_types', [])) ? 'selected' : '' }}>Exam</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
                             <button type="submit" class="btn w-100" style="background-color: #800000; color: white; border: none;">Filter</button>
                         </div>
                     </div>
@@ -52,16 +60,22 @@
                             <div class="accordion-body p-0 pt-3">
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered" style="border-color: #b8a373;">
-                                        <thead style="background-color: #800000; color: white; position: sticky; top: 0; z-index: 1;">
-                
+                                        <thead style="background-color: rgb(250, 248, 248); color: black; position: sticky; top: 0; z-index: 1;">
                                             <tr>
                                                 <th>Course Unit</th>
-                                                <th>Assessment Type</th>
-                                                <th>Test 1</th>
-                                                <th>Test 2</th>
-                                                <th>Assignment</th>
-                                                <th>Exam</th>
-                                                <th>Total Marks</th>
+                                                @if (in_array('test1', request('assessment_types', [])))
+                                                    <th>Test 1</th>
+                                                @endif
+                                                @if (in_array('test2', request('assessment_types', [])))
+                                                    <th>Test 2</th>
+                                                @endif
+                                                @if (in_array('assignment', request('assessment_types', [])))
+                                                    <th>Assignment</th>
+                                                @endif
+                                                @if (in_array('exam', request('assessment_types', [])))
+                                                    <th>Exam</th>
+                                                @endif
+                                                <th>Final Marks</th>
                                                 <th>Grade</th>
                                                 <th>Semester</th>
                                                 <th>Year</th>
@@ -72,11 +86,18 @@
                                             @forelse ($assessments as $assessment)
                                                 <tr class="grade-row">
                                                     <td>{{ $assessment->courseUnit->name }}</td>
-                                                    <td>{{ $assessment->assessment_type }}</td>
-                                                    <td>{{ $assessment->marks['test1'] }}</td>
-                                                    <td>{{ $assessment->marks['test2'] }}</td>
-                                                    <td>{{ $assessment->marks['assignment'] }}</td>
-                                                    <td>{{ $assessment->marks['exam'] }}</td>
+                                                    @if (in_array('test1', request('assessment_types', [])))
+                                                        <td>{{ $assessment->marks['test1'] ?? '-' }}</td>
+                                                    @endif
+                                                    @if (in_array('test2', request('assessment_types', [])))
+                                                        <td>{{ $assessment->marks['test2'] ?? '-' }}</td>
+                                                    @endif
+                                                    @if (in_array('assignment', request('assessment_types', [])))
+                                                        <td>{{ $assessment->marks['assignment'] ?? '-' }}</td>
+                                                    @endif
+                                                    @if (in_array('exam', request('assessment_types', [])))
+                                                        <td>{{ $assessment->marks['exam'] ?? '-' }}</td>
+                                                    @endif
                                                     <td>{{ $assessment->total_marks }}</td>
                                                     <td><span class="badge" style="background-color: #b8a373; color: white;">{{ $assessment->grade }}</span></td>
                                                     <td>{{ $assessment->semester->name }}</td>
@@ -85,7 +106,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="11" class="text-center text-muted">No grades available.</td>
+                                                    <td colspan="{{ 5 + count(request('assessment_types', [])) }}" class="text-center text-muted">No grades available.</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -100,7 +121,7 @@
                     <div class="accordion-item" style="border: none;">
                         <h2 class="accordion-header" id="transcriptHeading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transcriptCollapse" aria-expanded="false" aria-controls="transcriptCollapse" style="background-color: #f8f9fa; color: #800000;">
-                                <i class="fas fa-file-alt me-2"></i> Transcript Summary
+                                <i class="fas fa-file-alt me-2"></i> Statement Of Results
                             </button>
                         </h2>
                         <div id="transcriptCollapse" class="accordion-collapse collapse" aria-labelledby="transcriptHeading" data-bs-parent="#gradesTranscriptsAccordion">
@@ -153,17 +174,13 @@
     .badge:hover {
         transform: scale(1.1);
     }
-    
     .grade-row:hover {
         background-color: #f8f9fa;
         transition: background-color 0.2s;
     }
-
     .table thead th {
-    background-color: #800000 !important;
-    color: #ffffff !important;
-}
-
-
+        background-color: rgb(250, 248, 248) !important;
+        color: black !important;
+    }
 </style>
 @endsection

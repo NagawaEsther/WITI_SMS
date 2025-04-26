@@ -63,7 +63,7 @@
             <tr>
                 <th>Course Unit</th>
                 <th>Assessment Type</th>
-                <th>Total Marks</th>
+                <th>Final Marks</th>
                 <th>Grade</th>
                 <th>Semester</th>
                 <th>Year</th>
