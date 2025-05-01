@@ -684,12 +684,21 @@ $student = $user && isset($user->student) ? $user->student : null;
     </a>
 </li>
 
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link {{ Request::is('my_marks*') ? 'active-link' : '' }}" href="{{ route('/feedback') }}">
         <i class="fa fa-comment"></i>
         <span>My coursework marks</span>
     </a>
+</li> --}}
+
+<li class="nav-item">
+    <a class="nav-link {{ Request::is('my_marks*') ? 'active-link' : '' }}" href="{{ route('student.coursework') }}">
+        <i class="fa fa-comment"></i>
+        <span>My coursework marks</span>
+    </a>
 </li>
+
+
 
 <li class="nav-item">
     <a class="nav-link {{ Request::is('academic_calendar*') ? 'text-danger' : '' }}"
@@ -699,12 +708,6 @@ $student = $user && isset($user->student) ? $user->student : null;
     </a>
 </li>
 
-{{-- <li class="nav-item">
-    <a class="nav-link {{ Request::is('grades*') ? 'text-danger' : '' }}" href="{{ route('course.details') }}">
-        <i class="fa fa-users"></i>
-        <span class="{{ Request::is('grades*') ? 'text-danger' : '' }}">Grades & Transcripts</span>
-    </a>
-</li> --}}
 
 <li class="nav-item">
     <a class="nav-link {{ Request::is('student-dashboard*') ? 'text-danger' : '' }}"

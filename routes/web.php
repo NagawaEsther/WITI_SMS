@@ -313,6 +313,12 @@ Route::get('/my-courses', [App\Http\Controllers\StudentDashboardController::clas
     ->middleware('auth');
 
 
+// Route::get('/student/coursework', [CourseworkMarksController::class, 'index'])->name('student.coursework');
+
+// Route for coursework marks
+Route::get('/student/coursework', [App\Http\Controllers\CourseworkMarksController::class, 'index'])->name('student.coursework');
+
+
 
 // Show courses to enroll
 Route::get('/student-dashboard/available-courses', [App\Http\Controllers\StudentDashboardController::class, 'showAvailableCourses'])->name('/available_courses');

@@ -99,7 +99,7 @@
                                                         <td>{{ $assessment->marks['exam'] ?? '-' }}</td>
                                                     @endif
                                                     <td>{{ $assessment->total_marks }}</td>
-                                                    <td><span class="badge" style="background-color: #b8a373; color: white;">{{ $assessment->grade }}</span></td>
+                                                    <td><span class="badge" style="background-color: green; color: white;">{{ $assessment->grade }}</span></td>
                                                     <td>{{ $assessment->semester->name }}</td>
                                                     <td>{{ $assessment->year->name }}</td>
                                                     <td>{{ $assessment->lecturer_comments ?? '-' }}</td>
@@ -126,13 +126,13 @@
                         </h2>
                         <div id="transcriptCollapse" class="accordion-collapse collapse" aria-labelledby="transcriptHeading" data-bs-parent="#gradesTranscriptsAccordion">
                             <div class="accordion-body">
-                                <h5 style="color: #800000;">Overall CGPA: <span class="badge" style="background-color: #b8a373; color: white;">{{ $cgpaData['overall'] }}</span></h5>
+                                <h5 style="color: #800000;">Overall CGPA: <span class="badge" style="background-color: green; color: white;">{{ $cgpaData['overall'] }}</span></h5>
                                 <h6 class="mt-3" style="color: #800000;">CGPA by Year and Semester</h6>
                                 <ul class="list-group">
                                     @forelse ($cgpaData['by_year_semester'] as $key => $cgpa)
                                         <li class="list-group-item d-flex justify-content-between align-items-center" style="border-color: #b8a373;">
                                             {{ $key }}
-                                            <span class="badge" style="background-color: #b8a373; color: white;">{{ $cgpa }}</span>
+                                            <span class="badge" style="background-color:green; color: white;">{{ $cgpa }}</span>
                                         </li>
                                     @empty
                                         <li class="list-group-item text-muted">No CGPA data available.</li>
