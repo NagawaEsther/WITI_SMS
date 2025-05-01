@@ -25,6 +25,8 @@ class CourseworkMarksController extends Controller
         $request->validate([
             'semester_id' => 'nullable|exists:semesters,id',
             'year_id' => 'nullable|exists:years,id',
+            'show_columns' => 'nullable|array',
+            'show_columns.*' => 'in:program,lecturer_comments',
         ]);
 
         // Fetch assessments with non-empty coursework marks (test1, test2, or assignment)
@@ -49,11 +51,15 @@ class CourseworkMarksController extends Controller
         $semesters = Semester::all();
         $years = Year::all();
 
+        // Get columns to show (program, lecturer_comments)
+        $showColumns = $request->input('show_columns', []);
+
         return view('student_coursework_marks', compact(
             'assessments',
             'student',
             'semesters',
-            'years'
+            'years',
+            'showColumns'
         ));
     }
 }
