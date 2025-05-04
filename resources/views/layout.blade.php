@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'WITI Portal')</title>
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('style.css') }}"> --}}
     <style>
         /* Navbar Styling */
         .navbar {
@@ -174,9 +174,9 @@
     <nav class="navbar">
         <div class="logo-section">
             <!-- Left section with logo -->
-            <div class="logo-container">
+            {{-- <div class="logo-container">
                 <img src="{{ asset('storage/images/try.png') }}" alt="WITI Logo" class="logo">
-            </div>
+            </div> --}}
         </div>
         <ul>
             <li><a href="/">Home</a></li>

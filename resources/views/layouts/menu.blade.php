@@ -718,12 +718,20 @@ $student = $user && isset($user->student) ? $user->student : null;
 </li>
 
 
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link {{ Request::is('resources*') ? 'active-link' : '' }}" href="{{ route('students.index') }}">
         <i class="fa fa-question-circle"></i>
         <span class="{{ Request::is('resources*') ? 'active-link' : '' }}">Resources & Support</span>
     </a>
+</li> --}}
+
+<li class="nav-item">
+    <a class="nav-link {{ Request::is('/resources*') ? 'active-link' : '' }}" href="{{ route('resources.index') }}">
+        <i class="fa fa-book"></i>
+        <span>Resources & Support</span>
+    </a>
 </li>
+
 
 <li class="nav-item">
     <a class="nav-link {{ Request::is('feedback*') ? 'active-link' : '' }}" href="{{ route('/feedback') }}">

@@ -447,7 +447,7 @@
         @endsection --}}
 
 
-        @extends('layout')
+        {{-- @extends('layout')
 
         @section('title', 'Apply - WITI Portal')
 
@@ -625,4 +625,417 @@
             </form>
         </div>
 
+        @endsection --}}
+
+        @extends('layout')
+
+        @section('title', 'Apply - WITI Portal')
+        
+        @section('styles')
+        <!-- Bootstrap 5 CSS (for layout compatibility) -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Google Fonts (Roboto) -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <style>
+            /* Fallback external styles for the application form */
+            .witi-form-wrapper {
+                font-family: 'Roboto', sans-serif !important;
+                /* Debug: Brown border to match theme */
+                border: 3px solid #b8a373 !important;
+            }
+        
+            .witi-form-wrapper .form-container {
+                max-width: 1100px !important;
+                margin: 2rem auto !important;
+                padding: 0 15px !important;
+                background-color: #FFFFFF !important;
+                animation: formFadeIn 0.8s ease-in !important;
+            }
+        
+            .witi-form-wrapper .form-title {
+                color: #A52A2A !important;
+                font-weight: 600 !important;
+                text-align: center !important;
+                margin-bottom: 2rem !important;
+                text-transform: uppercase !important;
+                letter-spacing: 1px !important;
+                font-size: 1.7rem !important;
+            }
+        
+            .witi-form-wrapper .form-card {
+                border: 1px solid #b8a373 !important;
+                border-radius: 8px !important;
+                background: #f8f9fa !important;
+                margin-bottom: 1.5rem !important;
+                box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08) !important;
+                transition: box-shadow 0.3s ease !important;
+            }
+        
+            .witi-form-wrapper .form-card:hover {
+                box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12) !important;
+            }
+        
+            .witi-form-wrapper .form-card-header {
+                background-color: #A52A2A !important;
+                color: #FFFFFF !important;
+                font-weight: 500 !important;
+                padding: 0.9rem 1.5rem !important;
+                border-radius: 8px 8px 0 0 !important;
+                font-size: 1.25rem !important;
+                text-align: center !important;
+            }
+        
+            .witi-form-wrapper .form-card-body {
+                padding: 1.5rem !important;
+                background: #FFFFFF !important;
+                border-radius: 0 0 8px 8px !important;
+            }
+        
+            .witi-form-wrapper .form-label {
+                color: #333333 !important;
+                font-weight: 500 !important;
+                margin-bottom: 0.4rem !important;
+                font-size: 0.9rem !important;
+                display: block !important;
+            }
+        
+            .witi-form-wrapper .form-input,
+            .witi-form-wrapper .form-select {
+                border: 1px solid #b8a373 !important;
+                border-radius: 6px !important;
+                padding: 0.65rem !important;
+                height: 38px !important;
+                font-size: 0.9rem !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+                font-family: 'Roboto', sans-serif !important;
+            }
+        
+            .witi-form-wrapper .form-input:focus,
+            .witi-form-wrapper .form-select:focus {
+                border-color: #A52A2A !important;
+                box-shadow: 0 0 5px rgba(165, 42, 42, 0.15) !important;
+                outline: none !important;
+            }
+        
+            .witi-form-wrapper .form-input[type="file"] {
+                height: 38px !important;
+                padding: 0.5rem !important;
+                line-height: 1.5 !important;
+            }
+        
+            .witi-form-wrapper .form-btn {
+                background-color: #A52A2A !important;
+                border: none !important;
+                padding: 0.75rem 2.5rem !important;
+                border-radius: 6px !important;
+                font-weight: 600 !important;
+                font-size: 1rem !important;
+                text-transform: uppercase !important;
+                color: #FFFFFF !important;
+                transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease !important;
+                cursor: pointer !important;
+                display: inline-block !important;
+            }
+        
+            .witi-form-wrapper .form-btn:hover {
+                background-color: #852121 !important;
+                transform: scale(1.05) !important;
+                box-shadow: 0 0 10px rgba(165, 42, 42, 0.5) !important;
+            }
+        
+            .witi-form-wrapper .form-alert {
+                background-color: #f8f9fa !important;
+                color: #A52A2A !important;
+                border: 1px solid #b8a373 !important;
+                border-radius: 6px !important;
+                padding: 0.8rem !important;
+                margin: 1rem auto !important;
+                max-width: 1100px !important;
+                font-weight: 500 !important;
+                position: relative !important;
+            }
+        
+            .witi-form-wrapper .form-alert .form-alert-close {
+                position: absolute !important;
+                top: 0.5rem !important;
+                right: 0.5rem !important;
+                background: none !important;
+                border: none !important;
+                cursor: pointer !important;
+                filter: brightness(0) saturate(100%) invert(30%) sepia(50%) saturate(2000%) hue-rotate(340deg) !important;
+            }
+        
+            .witi-form-wrapper .form-row {
+                margin-left: -8px !important;
+                margin-right: -8px !important;
+                display: flex !important;
+                flex-wrap: wrap !important;
+            }
+        
+            .witi-form-wrapper .form-col {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+                flex: 0 0 50% !important;
+                max-width: 50% !important;
+                box-sizing: border-box !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+        
+            .witi-form-wrapper .form-col-full {
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+            }
+        
+            .witi-form-wrapper .form-section .form-row {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                align-items: stretch !important;
+            }
+        
+            .witi-form-wrapper .form-section .form-input,
+            .witi-form-wrapper .form-section .form-select {
+                flex-grow: 1 !important;
+            }
+        
+            @media (max-width: 768px) {
+                .witi-form-wrapper .form-container {
+                    margin: 1rem 10px !important;
+                }
+        
+                .witi-form-wrapper .form-card-body {
+                    padding: 1rem !important;
+                }
+        
+                .witi-form-wrapper .form-btn {
+                    width: 100% !important;
+                    padding: 0.75rem !important;
+                }
+        
+                .witi-form-wrapper .form-title {
+                    font-size: 1.4rem !important;
+                }
+        
+                .witi-form-wrapper .form-card-header {
+                    font-size: 1.15rem !important;
+                }
+        
+                .witi-form-wrapper .form-row {
+                    margin-left: -5px !important;
+                    margin-right: -5px !important;
+                }
+        
+                .witi-form-wrapper .form-col,
+                .witi-form-wrapper .form-col-full {
+                    padding-left: 5px !important;
+                    padding-right: 5px !important;
+                    flex: 0 0 100% !important;
+                    max-width: 100% !important;
+                }
+            }
+        
+            @keyframes formFadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
+        @endsection
+        
+        @section('content')
+        <div class="witi-form-wrapper" style="font-family: 'Roboto', sans-serif; border: 3px solid #b8a373;">
+            @if(session('success'))
+            <div class="form-alert" style="background-color: #f8f9fa; color: #A52A2A; border: 1px solid #b8a373; border-radius: 6px; padding: 0.8rem; margin: 1rem auto; max-width: 1100px; font-weight: 500; position: relative;">
+                {{ session('success') }}
+                <button type="button" class="form-alert-close" data-bs-dismiss="alert" aria-label="Close" style="position: absolute; top: 0.5rem; right: 0.5rem; background: none; border: none; cursor: pointer; filter: brightness(0) saturate(100%) invert(30%) sepia(50%) saturate(2000%) hue-rotate(340deg);">×</button>
+            </div>
+            @endif
+        
+            @php
+            use App\Models\Program;
+            use App\Models\Cohorts;
+        
+            $programs = Program::all();
+            $cohorts = Cohorts::all();
+            @endphp
+        
+            <div class="form-container" style="max-width: 1100px; margin: 2rem auto; padding: 0 15px; background-color: #FFFFFF; animation: formFadeIn 0.8s ease-in;">
+                <h2 class="form-title" style="color: #A52A2A; font-weight: 600; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px; font-size: 1.7rem;">Student Application Form</h2>
+        
+                <form action="{{ route('student_applications.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+        
+                    <!-- Personal Information -->
+                    <div class="form-card form-section" style="border: 1px solid #b8a373; border-radius: 8px; background: #f8f9fa; margin-bottom: 1.5rem; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);">
+                        <div class="form-card-header" style="background-color: #A52A2A; color: #FFFFFF; font-weight: 500; padding: 0.9rem 1.5rem; border-radius: 8px 8px 0 0; font-size: 1.25rem; text-align: center;">Personal Information</div>
+                        <div class="form-card-body" style="padding: 1.5rem; background: #FFFFFF; border-radius: 0 0 8px 8px;">
+                            <div class="form-row" style="margin-left: -8px; margin-right: -8px; display: flex; flex-wrap: wrap;">
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">First Name</label>
+                                    <input type="text" name="firstname" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Last Name</label>
+                                    <input type="text" name="lastname" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Email</label>
+                                    <input type="email" name="email" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Phone Number (Primary)</label>
+                                    <input type="text" name="phone_number" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Phone Number (Secondary)</label>
+                                    <input type="text" name="phone_number2" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Gender</label>
+                                    <select name="gender" class="form-select" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Date of Birth</label>
+                                    <input type="date" name="date_of_birth" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Nationality</label>
+                                    <input type="text" name="nationality" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                                <div class="form-col form-col-full" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Address</label>
+                                    <input type="text" name="address" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                                {{-- <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 50%; max-width: 50%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Address</label>
+                                    <input type="text" name="nationality" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Educational Background -->
+                    <div class="form-card form-section" style="border: 1px solid #b8a373; border-radius: 8px; background: #f8f9fa; margin-bottom: 1.5rem; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);">
+                        <div class="form-card-header" style="background-color: #A52A2A; color: #FFFFFF; font-weight: 500; padding: 0.9rem 1.5rem; border-radius: 8px 8px 0 0; font-size: 1.25rem; text-align: center;">Educational Background</div>
+                        <div class="form-card-body" style="padding: 1.5rem; background: #FFFFFF; border-radius: 0 0 8px 8px;">
+                            <div class="form-row" style="margin-left: -8px; margin-right: -8px; display: flex; flex-wrap: wrap;">
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px;flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Secondary School</label>
+                                    <input type="text" name="secondary_school" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Combination</label>
+                                    <input type="text" name="combination" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Points Scored</label>
+                                    <input type="number" name="points_scored" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">UACE Year of Completion</label>
+                                    <input type="number" name="uace_year_of_completion" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">UCE Certificate (PDF/Image)</label>
+                                    <input type="file" name="uce" class="form-input" accept=".pdf,.jpg,.jpeg,.png" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.5rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">UACE Certificate (PDF/Image)</label>
+                                    <input type="file" name="uace" class="form-input" accept=".pdf,.jpg,.jpeg,.png" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.5rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Guardian Information -->
+                    <div class="form-card form-section" style="border: 1px solid #b8a373; border-radius: 8px; background: #f8f9fa; margin-bottom: 1.5rem; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);">
+                        <div class="form-card-header" style="background-color: #A52A2A; color: #FFFFFF; font-weight: 500; padding: 0.9rem 1.5rem; border-radius: 8px 8px 0 0; font-size: 1.25rem; text-align: center;">Guardian Information</div>
+                        <div class="form-card-body" style="padding: 1.5rem; background: #FFFFFF; border-radius: 0 0 8px 8px;">
+                            <div class="form-row" style="margin-left: -8px; margin-right: -8px; display: flex; flex-wrap: wrap;">
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Guardian's Name</label>
+                                    <input type="text" name="guardian_name" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Guardian's Contact</label>
+                                    <input type="text" name="guardian_contact" class="form-input" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Program & Documents -->
+                    <div class="form-card form-section" style="border: 1px solid #b8a373; border-radius: 8px; background: #f8f9fa; margin-bottom: 1.5rem; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);">
+                        <div class="form-card-header" style="background-color: #A52A2A; color: #FFFFFF; font-weight: 500; padding: 0.9rem 1.5rem; border-radius: 8px 8px 0 0; font-size: 1.25rem; text-align: center;">Program & Documents</div>
+                        <div class="form-card-body" style="padding: 1.5rem; background: #FFFFFF; border-radius: 0 0 8px 8px;">
+                            <div class="form-row" style="margin-left: -8px; margin-right: -8px; display: flex; flex-wrap: wrap;">
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Program</label>
+                                    <select name="program_id" class="form-select" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                        <option value="">Select Program</option>
+                                        @foreach($programs as $program)
+                                        <option value="{{ $program->id }}">{{ $program->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Cohort</label>
+                                    <select name="cohort_id" class="form-select" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;" required>
+                                        <option value="">Select Cohort</option>
+                                        @foreach($cohorts as $cohort)
+                                        <option value="{{ $cohort->id }}">{{ $cohort->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">National ID (PDF/Image)</label>
+                                    <input type="file" name="national_id" class="form-input" accept=".pdf,.jpg,.jpeg,.png" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.5rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Recommendation Letter</label>
+                                    <input type="file" name="recommendation_letter" class="form-input" accept=".pdf,.jpg,.jpeg,.png" style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.5rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Interview Details -->
+                    <div class="form-card form-section" style="border: 1px solid #b8a373; border-radius: 8px; background: #f8f9fa; margin-bottom: 1.5rem; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);">
+                        <div class="form-card-header" style="background-color: #A52A2A; color: #FFFFFF; font-weight: 500; padding: 0.9rem 1.5rem; border-radius: 8px 8px 0 0; font-size: 1.25rem; text-align: center;">Interview Details (Admin Use Only)</div>
+                        <div class="form-card-body" style="padding: 1.5rem; background: #FFFFFF; border-radius: 0 0 8px 8px;">
+                            <div class="form-row" style="margin-left: -8px; margin-right: -8px; display: flex; flex-wrap: wrap;">
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Interview Date</label>
+                                    <input type="date" name="interview_date" class="form-input" readonly style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                                <div class="form-col" style="padding-left: 8px; padding-right: 8px; flex: 0 0 95%; max-width: 95%; display: flex; flex-direction: column;">
+                                    <label class="form-label" style="color: #333333; font-weight: 500; margin-bottom: 0.4rem; font-size: 0.9rem; display: block;">Interview Result</label>
+                                    <input type="text" name="interview_result" class="form-input" readonly style="border: 1px solid #b8a373; border-radius: 6px; padding: 0.65rem; height: 38px; font-size: 0.9rem; width: 100%; font-family: 'Roboto', sans-serif;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Submit Button -->
+                    <div class="text-center mt-3">
+                        <button type="submit" class="form-btn" style="background-color: #A52A2A; border: none; padding: 0.75rem 2.5rem; border-radius: 6px; font-weight: 600; font-size: 1rem; text-transform: uppercase; color: #FFFFFF; cursor: pointer; display: inline-block;">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        @endsection
+        
+        @section('scripts')
+        <!-- Bootstrap 5 JS (for alert dismissal and layout compatibility) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Inline script to confirm template is loaded -->
+        <script>
+            console.log("WITI Application Form Template Loaded");
+        </script>
         @endsection

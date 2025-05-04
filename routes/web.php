@@ -318,6 +318,13 @@ Route::get('/my-courses', [App\Http\Controllers\StudentDashboardController::clas
 // Route for coursework marks
 Route::get('/student/coursework', [App\Http\Controllers\CourseworkMarksController::class, 'index'])->name('student.coursework');
 
+// use App\Http\Controllers\ResourcesSupportController;
+// Route::get('/resources', [ResourcesSupportController::class, 'index'])->name('resources.index');
+
+use App\Http\Controllers\ResourcesSupportController;
+Route::get('/resources', [ResourcesSupportController::class, 'index'])->name('resources.index');
+Route::get('/resources/search', [ResourcesSupportController::class, 'search'])->name('resources.search');
+
 
 
 // Show courses to enroll
@@ -442,7 +449,9 @@ Route::post('/lectures/bulk-delete', [LectureController::class, 'bulkDelete'])->
 
 
 
-Route::resource('student_applications', StudentApplicationController::class);
+// Route::resource('student_applications', StudentApplicationController::class);
+
+Route::post('/student-applications', [App\Http\Controllers\StudentApplicationController::class, 'store'])->name('student_applications.store');
 
 Route::resource('calendar', AcademicCalendarController::class);
 
